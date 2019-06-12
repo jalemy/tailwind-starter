@@ -9,6 +9,7 @@ var autoprefixer = require('autoprefixer');
 var cssdeclsort = require('css-declaration-sorter');
 var mqpacker = require('css-mqpacker');
 var cssImport = require('postcss-import');
+var tailwindcss = require('tailwindcss');
 
 gulp.task('sass', function() {
   return gulp
@@ -20,6 +21,7 @@ gulp.task('sass', function() {
     .pipe(sassGlob())
     .pipe(sass({ outputStyle: 'expanded' }))
     .pipe(postcss([cssImport()]))
+    .pipe(postcss([tailwindcss()]))
     .pipe(postcss([cssdeclsort({ order: 'smacss' })]))
     .pipe(postcss([mqpacker()]))
     .pipe(postcss([autoprefixer()]))
